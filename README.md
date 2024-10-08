@@ -37,7 +37,7 @@ Image highlights
 
 Using xfs 16k sector size on x86_64 (not yet upstream) 
                                                                                  
-<img src="16k-sector/iu-alignment.png" width=650 align=center alt="16k sector size XFS">
+<img src="16k-sector/iu-alignment.png" align=center alt="16k sector size XFS">
 
 Tools used
 ==========
