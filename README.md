@@ -1,17 +1,12 @@
 Pre LBS upstream alignment tests and MySQL TPS variability results
 ==================================================================
 
-This is a collection of blkalgn test results with LBS. It also includes
-MySQL TPS variability tests and results. We document each directory meaning
-below. This was before LBS was merged and most of the tests were originally
-done without support for large folios on the block layer for direct IO
-(without Kundan's block layer folio pages). Kundan's patches proved to
-help with alignment, even for the buffered IO cases even though we have proven
-even writeback for buffered IO does not touch any of the DIO path, however
-results did show improvement in larger IOs when buffered IO is used with
-his patches applied. All in all, these test are severely outdated now that
-both LBS patches are merged and Kundan's patches are merged. We expect much
-better results.
+This is a collection of blkalgn test results with LBS before LBS got merged and
+so these are relatively outdated plots but enough of a proof of concept plots.
+kdevops already supports doing these tasks / plots in an automated way for any
+kernel and so they should be re-run with a more modern kernel. For example,
+Kundan's block folio patches were merged on v6.12-rc1 along with LBS and those
+should affect performance in a positive way.
 
 AWS i4i.4xlarge instance was used with debian-12 image, docker mysql and
 sysbench images.
