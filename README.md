@@ -59,10 +59,6 @@ input here.
 
 <img src="24-tables-512-threads/compare-ext4-bigalloc-Vs-xfs-reflink-16k/iu-alignment.png" align=center alt="xfs 16k vs ext4 bigalloc">
 
-### xfs 16k effects of disabling double write buffer - 12 hours MySQL run
-
-<img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/aws-compare-xfs-16k-doublewrite-on-or-off-20240723-iu-alignment.png" align=center alt="xfs 16k vs ext4 bigalloc">
-
 ## TPS changes
 
 ### xfs 16k vs ext4 bigalloc 16k - 12 hour MySQL run
