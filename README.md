@@ -16,8 +16,8 @@ Support for testing all this is now automated in
 
 # Summary of results
 
-We see 3-4x MySQL TPS variability gains when testing against NVMe.
-We see 1.3x MySQL TPS outlier reduction when testing against NVMe.
+  * We see 3-4x MySQL TPS variability gains when testing against NVMe.
+  * We see 1.3x MySQL TPS outlier reduction when testing against NVMe.
 
 LBS provides alignment determinism. Future LBS work, which would also
 enable setting the filesystem sector size to 16k means absolutely no IO
