@@ -12,7 +12,7 @@ AWS i4i.4xlarge instance was used with debian-12 image, docker mysql and
 sysbench images.
 
 Support for testing all this is now automated in
-(kdevops)[https://github.com/linux-kdevops/kdevops].
+[kdevops](https://github.com/linux-kdevops/kdevops).
 
 # Summary of results
 
