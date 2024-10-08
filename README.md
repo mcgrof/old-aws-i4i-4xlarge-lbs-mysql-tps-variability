@@ -36,7 +36,7 @@ We define the TPS variability the square of the standard deviation.
 
 ## TPS outliers
 
-Outliers are TPS values 1.5 outside (IQR)[https://en.wikipedia.org/wiki/Interquartile_range].
+Outliers are TPS values 1.5 outside [IQR](https://en.wikipedia.org/wiki/Interquartile_range).
 There is likely a better value other than 1.5, a database expert should provide
 input here.
 
