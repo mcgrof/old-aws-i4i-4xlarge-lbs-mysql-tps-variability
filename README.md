@@ -47,25 +47,20 @@ input here.
 
 # Image highlights
 
-## Alignment checks
-
-### xfs 16k sector size on x86_64 (not yet upstream)
-
-1 million 4k file tests.
-                                                                                 
-<img src="16k-sector/iu-alignment.png" align=center alt="16k sector size XFS">
-
-### xfs 16k Vs ext4 bigalloc 16k - 12 hours MySQL run
-
-<img src="24-tables-512-threads/compare-ext4-bigalloc-Vs-xfs-reflink-16k/iu-alignment.png" align=center alt="xfs 16k vs ext4 bigalloc">
-
 ## TPS changes
 
 ### xfs 16k vs ext4 bigalloc 16k - 12 hour MySQL run
 
+This compares XFS with 16k block size filesystem against ext4 using a 4k
+block size and 16k bigalloc cluster size.
+
 <img src="24-tables-512-threads/compare-ext4-bigalloc-Vs-xfs-reflink-16k/ext4-bigalloc-16k-Vs-xfs-16k-reflink-24-tables-512-threads-aws-i4i-4xlarge.png" align=center alt="xfs 16k vs ext4 bigalloc">
 
 ### xfs 16k the effects of disabling the double write buffer
+
+This compares running XFS with a 16k block size filesystem on two nodes, with
+one node with the double write buffer enabled Vs on the other node the double
+write buffer disabled.
 
 TPS results:
 
@@ -84,6 +79,23 @@ Visualizing TPS outliers
 <img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/outliers_plot.png" align=center alt="xfs 16k vs ext4 bigalloc">
 
 kdevops has a way to do a factor analysis.
+
+
+## Alignment checks
+
+Alignment checks are important because of the atomic alignment requirements.
+Without proper max 16k alignment for 16k awupf drive you risk data loss.
+Most IOs should also be of the max atomic allowed, for nvme that's awupf.
+
+### xfs 16k sector size on x86_64 (not yet upstream)
+
+1 million 4k file tests.
+                                                                                 
+<img src="16k-sector/iu-alignment.png" align=center alt="16k sector size XFS">
+
+### xfs 16k Vs ext4 bigalloc 16k - 12 hours MySQL run
+
+<img src="24-tables-512-threads/compare-ext4-bigalloc-Vs-xfs-reflink-16k/iu-alignment.png" align=center alt="xfs 16k vs ext4 bigalloc">
 
 Tools used
 ==========
