@@ -35,7 +35,8 @@ future kernels to perform better with XFS on 16k.
 Image highlights
 ================
 
-Using xfs 16k sector size on x86_64 (not yet upstream) 
+xfs 16k sector size on x86_64 (not yet upstream) 
+================================================
                                                                                  
 <img src="16k-sector/iu-alignment.png" align=center alt="16k sector size XFS">
 
