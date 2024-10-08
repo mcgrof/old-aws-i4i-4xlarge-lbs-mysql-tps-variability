@@ -14,14 +14,15 @@ both LBS patches are merged and Kundan's patches are merged. We expect much
 better results.
 
 AWS i4i.4xlarge instance was used with debian-12 image, docker mysql and
-sysbench images.  The simple scripts in this project were used:
+sysbench images.
 
-Summary of results
-==================
+Support for testing all this is now automated in
+(kdevops)[https://github.com/linux-kdevops/kdevops].
+
+# Summary of results
 
 We see 3-4x MySQL TPS variability gains when testing against NVMe.
-We see ...  PostgresQL TPS variability gains when testing against NVMe
-(coming to kdevops soon).
+We see 1.3x MySQL TPS outlier reduction when testing against NVMe.
 
 LBS provides alignment determinism. Future LBS work, which would also
 enable setting the filesystem sector size to 16k means absolutely no IO
@@ -32,13 +33,61 @@ Comparison against ext4 with bigalloc 16k shows parity results over 12 hour runs
 and this was without Kundan's block layer folio changes. We expect v6.12-rc1 and
 future kernels to perform better with XFS on 16k.
 
-Image highlights
-================
+# Definitions
 
-xfs 16k sector size on x86_64 (not yet upstream) 
-================================================
+## TPS variability
+
+We define the TPS variability the square of the standard deviation.
+
+## TPS outliers
+
+Outliers are TPS values 1.5 outside (IQR)[https://en.wikipedia.org/wiki/Interquartile_range].
+There is likely a better value other than 1.5, a database expert should provide
+input here.
+
+# Image highlights
+
+## Alignment checks
+
+### xfs 16k sector size on x86_64 (not yet upstream)
+
+1 million 4k file tests.
                                                                                  
 <img src="16k-sector/iu-alignment.png" align=center alt="16k sector size XFS">
+
+### xfs 16k Vs ext4 bigalloc 16k - 12 hours MySQL run
+
+<img src="24-tables-512-threads/compare-ext4-bigalloc-Vs-xfs-reflink-16k/iu-alignment.png" align=center alt="xfs 16k vs ext4 bigalloc">
+
+### xfs 16k effects of disabling double write buffer - 12 hours MySQL run
+
+<img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/aws-compare-xfs-16k-doublewrite-on-or-off-20240723-iu-alignment.png" align=center alt="xfs 16k vs ext4 bigalloc">
+
+## TPS changes
+
+### xfs 16k vs ext4 bigalloc 16k - 12 hour MySQL run
+
+<img src="24-tables-512-threads/compare-ext4-bigalloc-Vs-xfs-reflink-16k/ext4-bigalloc-16k-Vs-xfs-16k-reflink-24-tables-512-threads-aws-i4i-4xlarge.png" align=center alt="xfs 16k vs ext4 bigalloc">
+
+### xfs 16k the effects of disabling the double write buffer
+
+TPS results:
+
+<img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/xfs-16k-Vs-xfs-16k-doublewrite-vs-nodoublewrite.png" align=center alt="xfs 16k vs ext4 bigalloc">
+
+Visualizing TPS variability
+
+<img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/combined_hist_bell_curve.png" align=center alt="xfs 16k vs ext4 bigalloc">
+
+TPS variability factor change:
+
+<img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/variance_bar.png" align=center alt="xfs 16k vs ext4 bigalloc">
+
+Visualizing TPS outliers
+
+<img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/outliers_plot.png" align=center alt="xfs 16k vs ext4 bigalloc">
+
+kdevops has a way to do a factor analysis.
 
 Tools used
 ==========
