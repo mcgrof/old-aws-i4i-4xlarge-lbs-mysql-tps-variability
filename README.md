@@ -32,6 +32,13 @@ Comparison against ext4 with bigalloc 16k shows parity results over 12 hour runs
 and this was without Kundan's block layer folio changes. We expect v6.12-rc1 and
 future kernels to perform better with XFS on 16k.
 
+Image highlights
+================
+
+Using xfs 16k sector size on x86_64 (not yet upstream) 
+                                                                                 
+<img src="16k-sector/iu-alignment.png" width=250 align=center alt="16k sector size XFS">
+
 Tools used
 ==========
 
