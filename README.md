@@ -61,15 +61,22 @@ TPS results:
 
 <img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/xfs-16k-Vs-xfs-16k-doublewrite-vs-nodoublewrite.png" align=center alt="xfs 16k vs ext4 bigalloc">
 
-Visualizing TPS variability
+Visualizing TPS variability: since TPS variability is defined as the square of
+the standard deviation, this image shows us what the standard deviation is
+using a bell curve. The standard deviation starts at the center peak of the
+curve and is the length from the center to the right or left of the same
+colored vertical dotted line.
 
 <img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/combined_hist_bell_curve.png" align=center alt="xfs 16k vs ext4 bigalloc">
 
-TPS variability factor change:
+TPS variability factor change: this just squares the standard deviation. But
+it visualizes the delta in terms of factors of the difference in TPS
+variability.
 
 <img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/variance_bar.png" align=center alt="xfs 16k vs ext4 bigalloc">
 
-Visualizing TPS outliers
+Visualizing TPS outliers: using the definition of an outlier above, this
+visualizes the outliers, those outside the box.
 
 <img src="24-tables-512-threads/compare-xfs-16k-disabling-doublewrite/outliers_plot.png" align=center alt="xfs 16k vs ext4 bigalloc">
 
